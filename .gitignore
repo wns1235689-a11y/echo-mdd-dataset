@@ -1,0 +1,16 @@
+# 데이터·산출물은 올리지 않는다 (AI-Hub 이용 조건, L2-ARCTIC CC BY-NC)
+*.json
+*.wav
+*.TextGrid
+*.zip
+*.tar.gz
+data/
+output/
+prn_label_*/
+l2arctic*/
+missing_files.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
