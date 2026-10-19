@@ -36,10 +36,11 @@ analysis/   최종 데이터·원본 라벨 전수 검증 스크립트 (논문 �
 | `check_v1v2_local.py` | 서버 정제본 v1·v2의 구성 규칙 판별(문장 문항·길이 조건) |
 | `check_v2_vs_source.py` | v2 전체를 원본 라벨과 대조하여 변환 규칙 역추적, 원본 tagging 기준 오류 분포 |
 | `aihub_error_pairs.py` | 원본 tagging 기준 상위 대치·삭제·삽입 집계 |
+| `check_alignment.py` | 최종 학습 데이터의 두 정렬 필드 길이 일치, 학습 목표 생성 규칙, 학습 목표에 남은 묵음의 출처 |
 
 ## 실행
 
-Python 3. 추가 라이브러리는 `parse_aihub.py`의 g2p_en과 `dataset_stats.py`의 rapidfuzz뿐이다.
+Python 3. 추가 라이브러리는 `parse_aihub.py`의 g2p_en과 `dataset_stats.py`·`check_alignment.py`의 rapidfuzz뿐이다.
 
 ```bash
 pip install g2p_en rapidfuzz
@@ -63,6 +64,9 @@ python analysis/check_aihub_labels_local.py <prn_label_train> <aihub_train.json>
 python analysis/check_v1v2_local.py <aihub_clean_v1.json> <aihub_clean_v2.json>
 python analysis/check_v2_vs_source.py <prn_label_train> <aihub_clean_v2.json> <aihub_train.json> <aihub_val.json>
 python analysis/aihub_error_pairs.py <prn_label_train> <aihub_clean_v2.json>
+
+# 정렬 필드·학습 목표 점검 (train.json, val.json, test.json이 있는 폴더)
+python analysis/check_alignment.py <폴더>
 ```
 
 ## 출력 스키마
