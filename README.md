@@ -15,7 +15,7 @@
 
 ```
 pipeline/   데이터셋 구축 스크립트 (프로젝트 기간, 2026. 3~4.)
-analysis/   최종 데이터·원본 라벨 전수 검증 스크립트 (논문 집필, 2026. 10.)
+analysis/   최종 데이터·원본 라벨 전수 검증 스크립트 (논문 집필, 2026. 10~11.)
 ```
 
 ### pipeline/
@@ -37,6 +37,7 @@ analysis/   최종 데이터·원본 라벨 전수 검증 스크립트 (논문 �
 | `check_v2_vs_source.py` | v2 전체를 원본 라벨과 대조하여 변환 규칙 역추적, 원본 tagging 기준 오류 분포 |
 | `aihub_error_pairs.py` | 원본 tagging 기준 상위 대치·삭제·삽입 집계 |
 | `check_alignment.py` | 최종 학습 데이터의 두 정렬 필드 길이 일치, 학습 목표 생성 규칙, 학습 목표에 남은 묵음의 출처 |
+| `check_eval_split.py` | 최종 학습 데이터의 라벨에서 오류 자리·정상 자리 수를 세어, 팀이 공유한 성능표(논문 표 14)의 수치가 나올 수 있는 분할 판별 |
 
 ## 실행
 
@@ -67,6 +68,9 @@ python analysis/aihub_error_pairs.py <prn_label_train> <aihub_clean_v2.json>
 
 # 정렬 필드·학습 목표 점검 (train.json, val.json, test.json이 있는 폴더)
 python analysis/check_alignment.py <폴더>
+
+# 성능표의 평가 분할 판별
+python analysis/check_eval_split.py <test.json> <val.json> <train.json>
 ```
 
 ## 출력 스키마
